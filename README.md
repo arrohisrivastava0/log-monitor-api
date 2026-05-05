@@ -128,7 +128,7 @@ All thresholds are configurable via environment variables.
 ---
 
 ## Alert Email Sample
-![Alert Email](screenshots/alert_email.png)
+![Alert Email](screenshots/alert_email.jpeg)
 
 ## Tech Stack
 
