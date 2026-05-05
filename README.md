@@ -127,6 +127,9 @@ All thresholds are configurable via environment variables.
 
 ---
 
+## Alert Email Sample
+![Alert Email](screenshots/alert_email.png)
+
 ## Tech Stack
 
 - **FastAPI** — API framework with middleware-based logging
