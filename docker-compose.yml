@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: logdb
+    environment:
+      POSTGRES_USER: loguser
+      POSTGRES_PASSWORD: logpass
+      POSTGRES_DB: logdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U loguser -d logdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    container_name: log-monitor-api
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://loguser:logpass@db:5432/logdb
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
